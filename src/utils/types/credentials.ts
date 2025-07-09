@@ -1,7 +1,10 @@
+import { Planification } from "./planification";
+
 export interface CredentialsGetMe {
     id: number;
     email: string;
     username: string;
+    planification:Planification
 }
 
 export interface CredentialsLogin {
