@@ -9,7 +9,7 @@ const DaySelector = ({ userPlanification, selectedDay, setSelectedDay }: { userP
           <button
             key={day}
             onClick={() => setSelectedDay(parseInt(day))}
-            className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 ${
+            className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 cursor-pointer transform hover:scale-105 ${
               selectedDay === parseInt(day)
                 ? "bg-gray-800 border-2 border-[#e63946] text-[#e63946] shadow-lg"
                 : "bg-gray-700 border-2 border-transparent text-gray-300 hover:bg-gray-600 hover:text-white"

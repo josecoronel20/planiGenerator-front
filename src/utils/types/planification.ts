@@ -1,6 +1,11 @@
-export interface Planification {
-  [key: string]: Array<{
+export type Exercise = {
+    id: string;
     exercise: string;
-    sets: number;
-  }>;
-}
+    sets: number[];
+    wheight: number;
+  };
+  
+  export type Planification = {
+    [day: string]: Exercise[];
+  };
+  

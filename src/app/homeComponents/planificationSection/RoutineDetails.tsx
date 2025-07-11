@@ -1,8 +1,9 @@
 import { Dumbbell, Target } from "lucide-react";
 import React from "react";
-import ExerciceCard from "./ExerciceCard";
+import ExerciseCard from "./ExerciseCard";
+import { Exercise } from "@/utils/types/planification";
 
-const RoutineDetails = ({ selectedDay, currentRoutine }: { selectedDay: number, currentRoutine: Array<{ exercise: string, sets: number }> }) => {
+const RoutineDetails = ({ selectedDay, currentRoutine }: { selectedDay: number, currentRoutine: Exercise[] }) => {
     console.log(currentRoutine)
 
   return (
@@ -16,7 +17,7 @@ const RoutineDetails = ({ selectedDay, currentRoutine }: { selectedDay: number, 
           <div className="flex items-center gap-4 text-gray-400">
             <div className="flex items-center gap-2">
               <Target className="h-5 w-5" />
-              <span>{currentRoutine.length} ejercicios</span>
+              <span>{Object.keys(currentRoutine).length} ejercicios</span>
             </div>
           </div>
         </div>
@@ -27,8 +28,8 @@ const RoutineDetails = ({ selectedDay, currentRoutine }: { selectedDay: number, 
 
       {/* Exercise List */}
       <div className="space-y-4">
-        {currentRoutine.map((exercise, index) => (
-          <ExerciceCard key={index} exercise={exercise} index={index} />
+        {Object.values(currentRoutine).flat().map((exercise, index) => (
+          <ExerciseCard key={index} exercise={exercise} index={index} />
         ))}
       </div>
 

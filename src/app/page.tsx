@@ -3,14 +3,14 @@
 import { useState } from "react"
 import { useGetMe } from "@/hooks/useGetMe"
 import { Planification } from "@/utils/types/planification"
-import DaySelector from "./components/planificationSection/DaySelector"
-import RoutineDetails from "./components/planificationSection/RoutineDetails"
+import DaySelector from "./homeComponents/planificationSection/DaySelector"
+import RoutineDetails from "./homeComponents/planificationSection/RoutineDetails"
 
 export default function Home() {
   const [selectedDay, setSelectedDay] = useState(1)
   const user = useGetMe()
   const userPlanification: Planification = user?.planification || {}
-  const currentRoutine = userPlanification[selectedDay] || []
+  const currentRoutine = userPlanification[selectedDay] || {}
 
   return (
     <div className="min-h-screen bg-black text-white p-4">

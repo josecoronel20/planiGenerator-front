@@ -23,7 +23,22 @@ No incluyas repeticiones, explicaciones ni días específicos (solo día 1, día
 Respondé exclusivamente con un objeto JSON con esta estructura:
 
 {
-  "1": [ { "ejercicio": "...", "series": ... }, ... ],
+      "1": [
+        {
+          "id": "exercise1",
+          "exercise": "press inclinado con mancuernas",
+          "sets": [8, 8, 8, 8],
+          "wheight": 0
+        },
+        {
+          "id": "exercise2",
+          "exercise": "cruce de poleas alto a bajo",
+          "sets": [8, 8, 8],
+          "wheight": 0
+        },
+        
+        ...
+      ],
   "2": [ ... ],
   ...
 }

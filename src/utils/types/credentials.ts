@@ -4,7 +4,7 @@ export interface CredentialsGetMe {
     id: number;
     email: string;
     username: string;
-    planification:Planification
+    planification: Planification
 }
 
 export interface CredentialsLogin {
