@@ -9,7 +9,7 @@ const RoutineDetails = ({ selectedDay, currentRoutine }: { selectedDay: number, 
   return (
     <section className="bg-gray-900 rounded-2xl shadow-2xl p-6 md:p-8 border border-gray-700">
       {/* Routine Header */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+      <div className="flex  md:flex-row md:items-center justify-between mb-6">
         <div className="mb-4 md:mb-0">
           <h2 className="text-2xl md:text-3xl font-bold text-[#e63946] mb-2">
             Día {selectedDay}

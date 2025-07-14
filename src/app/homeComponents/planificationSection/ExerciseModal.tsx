@@ -49,23 +49,26 @@ export default function ExerciseModal({
       wheight: weight,
     };
 
-    console.log(user);
-
     const userUpdated = {
       ...user,
-      planification: user.planification ? Object.fromEntries(
-        Object.entries(user.planification).map(([day, exercises]) => {
-          const updatedExercises = (exercises as Exercise[]).map((exercise) =>
-            exercise.id === exerciseUpdated.id ? exerciseUpdated : exercise
+      planification: user.planification
+        ? Object.fromEntries(
+            Object.entries(user.planification).map(([day, exercises]) => {
+              const updatedExercises = (exercises as Exercise[]).map(
+                (exercise) =>
+                  exercise.id === exerciseUpdated.id
+                    ? exerciseUpdated
+                    : exercise
+              );
+              return [day, updatedExercises];
+            })
           )
-          return [day, updatedExercises]
-        })
-      ) : user.planification,
+        : user.planification,
     };
 
     updateUser(userUpdated);
 
-    setIsEditing(false);
+    setIsEditing(true);
   };
 
   return (
@@ -87,11 +90,11 @@ export default function ExerciseModal({
           </button>
         </div>
 
-        <div className="flex justify-evenly py-2">
-          <div className="flex items-center gap-2 w-fit">
+        <div className="grid grid-cols-2 gap-2 px-4 py-2">
+          <div className="flex items-center gap-2 w-full justify-between px-2">
             <button
               onClick={() => {
-                setWeight(weight - 1);
+                setWeight(weight - 0.5);
                 setIsEditing(true);
               }}
               className="w-8 h-8 bg-gray-700 hover:bg-gray-600 rounded-full flex items-center justify-center text-white transition-colors"
@@ -101,7 +104,7 @@ export default function ExerciseModal({
             <span>{weight} kg</span>
             <button
               onClick={() => {
-                setWeight(weight + 1);
+                setWeight(weight + 0.5);
                 setIsEditing(true);
               }}
               className="w-8 h-8 bg-gray-700 hover:bg-gray-600 rounded-full flex items-center justify-center text-white transition-colors"
@@ -110,7 +113,7 @@ export default function ExerciseModal({
             </button>
           </div>
 
-          <div className="flex items-center gap-2 w-fit">
+          <div className="flex items-center gap-2 w-fit mx-auto">
             <button
               disabled={!isEditing}
               onClick={handleSave}
