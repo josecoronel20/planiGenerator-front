@@ -4,7 +4,7 @@ import ExerciseCard from "./ExerciseCard";
 import { Exercise } from "@/utils/types/planification";
 
 const RoutineDetails = ({ selectedDay, currentRoutine }: { selectedDay: number, currentRoutine: Exercise[] }) => {
-    console.log(currentRoutine)
+
 
   return (
     <section className="bg-gray-900 rounded-2xl shadow-2xl p-6 md:p-8 border border-gray-700">

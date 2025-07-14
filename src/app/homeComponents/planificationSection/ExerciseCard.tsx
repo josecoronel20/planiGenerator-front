@@ -41,13 +41,16 @@ const ExerciseCard = ({
           </span>
         </div>
       </div>
+
+      {isModalOpen && (
       <ExerciseModal
-        isOpen={isModalOpen}
         onClose={() => {
           setIsModalOpen(false);
         }}
         exercise={exercise}
+        indexExercise={index}
       />
+      )}
     </div>
   );
 };

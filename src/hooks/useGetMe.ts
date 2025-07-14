@@ -1,19 +1,14 @@
-import { useEffect, useState } from "react";
-import { CredentialsGetMe } from "@/utils/types/credentials";
+import { User } from "@/utils/types/user";
+import { useFetchUser } from "@/utils/api/user";
+import { useRouter } from "next/navigation";
 
 export const useGetMe = () => {
-    const [user, setUser] = useState<CredentialsGetMe | null>(null);
+  const router = useRouter();
+  const { data, isLoading } = useFetchUser();
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/me`, {
-                credentials: "include",
-            });
-            const data = await response.json();
-            setUser(data.user as CredentialsGetMe);
-        }
-        fetchUser();
-    }, []);
+  if (data === null && !isLoading) {
+    router.push("/login");
+  }
 
-    return user;
-}
+  return data as User;
+};
