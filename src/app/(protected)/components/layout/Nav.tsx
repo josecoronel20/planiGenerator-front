@@ -19,6 +19,7 @@ export default function Navbar() {
   const navigationLinks = [
     { name: "Inicio", href: "/" },
     { name: "Generar rutina", href: "/formRoutine" },
+    { name: "Guía", href: "/guide" },
   ]
 
   const toggleMobileMenu = () => {
