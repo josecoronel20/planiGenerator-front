@@ -6,12 +6,15 @@ import {
   AlertCircle,
   Dumbbell,
   Activity,
+  SquareMenu,
 } from "lucide-react";
 import { FormData } from "@/utils/types/formRoutineTypes";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema } from "@/utils/zodSchemas/formRoutineSchema";
 import promptGenerator from "@/utils/promptGenerator";
+import { useState } from "react";
+import ModalRoutine from "./formRoutineComponents/ModalRoutine";
 
 export default function FormRoutine() {
   const {
@@ -28,6 +31,7 @@ export default function FormRoutine() {
     },
     resolver: zodResolver(formSchema),
   });
+  const [isRoutineOpen, setIsRoutineOpen] = useState(false);
 
   const experienceOptions = [
     { value: "beginner", label: "Principiante" },
@@ -65,21 +69,32 @@ export default function FormRoutine() {
   };
 
   return (
-    <div className="min-h-screen bg-black p-4">
+    <div className="min-h-screen bg-black p-4 pt-20">
       <div className="max-w-2xl mx-auto">
-        <div className="bg-gray-900 rounded-2xl shadow-2xl p-6 md:p-8 border border-gray-700">
+        <div className="bg-gray-900 rounded-2xl shadow-2xl p-4 md:p-8 border border-gray-700">
           {/* Header */}
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-[#e63946] rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="text-center mb-8 flex flex-col gap-4">
+            <div className="w-16 h-16 bg-[#e63946] rounded-full flex items-center justify-center mx-auto">
               <Activity className="h-8 w-8 text-white" />
             </div>
-            <h1 className="text-3xl font-bold text-white mb-2">
+            <h1 className="text-3xl font-bold text-white">
               Configuración de Rutina
             </h1>
             <p className="text-gray-400">
               Completa tus datos para crear una rutina personalizada
             </p>
+            <button
+              className="border border-[#e63946] text-white px-4 py-2 rounded-md cursor-pointer flex items-center gap-2 w-full justify-center hover:bg-[#e63946]/80 transition-all duration-200"
+              onClick={() => setIsRoutineOpen(true)}
+            >
+              <SquareMenu className="h-4 w-4" />
+              <span>ver rutina actual</span>
+            </button>
           </div>
+
+          {isRoutineOpen && (
+            <ModalRoutine onClose={() => setIsRoutineOpen(false)} />
+          )}
 
           {/* Form */}
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">

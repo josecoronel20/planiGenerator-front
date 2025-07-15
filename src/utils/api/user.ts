@@ -1,4 +1,4 @@
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import { User } from "../types/user";
 
 export const useFetchUser = () => {
@@ -22,12 +22,17 @@ export const useFetchUser = () => {
 export const updateUser = async (body: User) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/update`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     credentials: "include",
     body: JSON.stringify(body),
   });
+
+  if (response.ok) {
+    const updatedUser = await response.json();
+
+    mutate("me", updatedUser, false);
+
+  }
 
   return response;
 };

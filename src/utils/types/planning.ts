@@ -5,7 +5,7 @@ export type Exercise = {
     wheight: number;
   };
   
-  export type Planification = {
+  export type planning = {
     [day: string]: Exercise[];
   };
   

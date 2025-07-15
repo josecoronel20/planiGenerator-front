@@ -1,19 +1,19 @@
 "use client"
 
 import { useState } from "react"
-import { useGetMe } from "@/hooks/useGetMe"
-import { Planification } from "@/utils/types/planification"
-import DaySelector from "./homeComponents/planificationSection/DaySelector"
-import RoutineDetails from "./homeComponents/planificationSection/RoutineDetails"
+import { planning } from "@/utils/types/planning"
+import DaySelector from "./homeComponents/planningSection/DaySelector"
+import RoutineDetails from "./homeComponents/planningSection/RoutineDetails"
+import { useUserStore } from "@/store/User"
 
 export default function Home() {
   const [selectedDay, setSelectedDay] = useState(1)
-  const user = useGetMe()
-  const userPlanification: Planification = user?.planification || {}
-  const currentRoutine = userPlanification[selectedDay] || {}
+  const user = useUserStore((state) => state.user)
+  const userplanning: planning = user?.planning || {}
+  const currentRoutine = userplanning[selectedDay] || {}
 
   return (
-    <div className="min-h-screen bg-black text-white p-4">
+    <div className="min-h-screen bg-black text-white p-4 pt-20">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -22,7 +22,7 @@ export default function Home() {
         </div>
 
         {/* Day Selector */}
-        <DaySelector userPlanification={userPlanification} selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
+        <DaySelector userplanning={userplanning} selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
 
         {/* Routine Details */}
         <RoutineDetails selectedDay={selectedDay} currentRoutine={currentRoutine} />

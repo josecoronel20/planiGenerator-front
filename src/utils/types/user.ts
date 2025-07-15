@@ -1,14 +1,14 @@
-import { Planification } from "./planification";
+import { planning } from "./planning";
 
 export type User = {
   id: number;
   email: string;
   password: string;
   username: string;
-  planification: Planification | null;
+  planning: planning | null;
 };
 
 export type UserUpdate = {
   id: number;
-  planification: Planification;
+  planning: planning;
 };

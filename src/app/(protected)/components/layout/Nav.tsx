@@ -4,13 +4,13 @@ import { useState } from "react"
 import { Menu, X, User, LogOut, Dumbbell } from "lucide-react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { useGetMe } from "@/hooks/useGetMe"
 import { logout } from "@/utils/api/auth"
 import { useRouter } from "next/navigation"
+import { useUserStore } from "@/store/User"
 
 export default function Navbar() {
   const router = useRouter();
-  const user = useGetMe();
+  const user = useUserStore((state) => state.user);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false)
   const path = usePathname()
@@ -37,7 +37,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className={`bg-gray-900 border-b border-gray-700 sticky top-0 z-40 ${path === "/login" || path === "/register" ? "hidden" : "block"}`}>
+    <nav className={`bg-gray-900 border-b border-gray-700 fixed w-full top-0 z-40 ${path === "/login" || path === "/register" ? "hidden" : "block"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo/Brand */}
@@ -124,6 +124,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
+                onClick={toggleMobileMenu}
                 className="text-gray-300 hover:text-[#e63946] block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors duration-200 hover:bg-gray-700"
               >
                 {link.name}

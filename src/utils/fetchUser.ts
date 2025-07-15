@@ -8,12 +8,16 @@ export const useFetchUser = () => {
 
   const { data, error, isLoading } = useSWR(
     `${process.env.NEXT_PUBLIC_API_URL}/user/me`,
-    fetcher
+    fetcher,
+    {
+      revalidateOnFocus: true,
+      refreshInterval: 5 * 60 *1000,
+    }
   );
 
   if (error) {
     return { data: null, isLoading: false };
   }
-
+  console.log("data frome fetcher", data);
   return { data, isLoading };
 };

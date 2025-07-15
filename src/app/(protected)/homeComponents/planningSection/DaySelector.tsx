@@ -1,11 +1,11 @@
-import { Planification } from "@/utils/types/planification";
+import { planning } from "@/utils/types/planning";
 import React from "react";
 
-const DaySelector = ({ userPlanification, selectedDay, setSelectedDay }: { userPlanification: Planification, selectedDay: number, setSelectedDay: (day: number) => void }) => {
+const DaySelector = ({ userplanning, selectedDay, setSelectedDay }: { userplanning: planning, selectedDay: number, setSelectedDay: (day: number) => void }) => {
   return (
     <section className="mb-8">
       <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-        {Object.keys(userPlanification).map((day) => (
+        {Object.keys(userplanning).map((day) => (
           <button
             key={day}
             onClick={() => setSelectedDay(parseInt(day))}

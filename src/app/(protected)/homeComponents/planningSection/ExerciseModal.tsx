@@ -1,10 +1,11 @@
 "use client";
 
-import { X, Plus, Minus, Info } from "lucide-react";
-import { Exercise } from "@/utils/types/planification";
+import { X, Plus, Minus, Info, LoaderPinwheel } from "lucide-react";
+import { Exercise } from "@/utils/types/planning";
 import { useEffect, useState } from "react";
-import { useGetMe } from "@/hooks/useGetMe";
 import { updateUser } from "@/utils/api/user";
+import { useUserStore } from "@/store/User";
+import Weight from "./Weight";
 
 interface ExerciseModalProps {
   onClose: () => void;
@@ -21,12 +22,14 @@ export default function ExerciseModal({
     sets: initialReps,
     wheight: initialWeight,
   } = exercise;
-  const data = useGetMe();
-  const user = data;
+  const user = useUserStore((state) => state.user);
+  const updateExercise = useUserStore((state) => state.updateExercise);
   const [weight, setWeight] = useState(initialWeight);
   const [reps, setReps] = useState(initialReps);
   const [canProgressWeight, setCanProgressWeight] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [saving, setSaving] = useState(false);
+  
 
   // Handle reps
   const handleReps = (index: number, value: number) => {
@@ -42,18 +45,21 @@ export default function ExerciseModal({
   }, [reps]);
 
   // Handle save
-  const handleSave = () => {
+  const handleSave = async () => {
+    setSaving(true);
     const exerciseUpdated = {
       ...exercise,
       sets: reps,
       wheight: weight,
     };
 
+    if (!user) return;
+
     const userUpdated = {
       ...user,
-      planification: user.planification
+      planning: user.planning
         ? Object.fromEntries(
-            Object.entries(user.planification).map(([day, exercises]) => {
+            Object.entries(user.planning).map(([day, exercises]) => {
               const updatedExercises = (exercises as Exercise[]).map(
                 (exercise) =>
                   exercise.id === exerciseUpdated.id
@@ -63,12 +69,16 @@ export default function ExerciseModal({
               return [day, updatedExercises];
             })
           )
-        : user.planification,
+        : user.planning,
     };
 
-    updateUser(userUpdated);
+    const response = await updateUser(userUpdated);
 
-    setIsEditing(true);
+    if (response.status === 200) {
+      setIsEditing(false);
+      setSaving(false);
+      updateExercise(exerciseUpdated);
+    } 
   };
 
   return (
@@ -91,39 +101,20 @@ export default function ExerciseModal({
         </div>
 
         <div className="grid grid-cols-2 gap-2 px-4 py-2">
-          <div className="flex items-center gap-2 w-full justify-between px-2">
-            <button
-              onClick={() => {
-                setWeight(weight - 0.5);
-                setIsEditing(true);
-              }}
-              className="w-8 h-8 bg-gray-700 hover:bg-gray-600 rounded-full flex items-center justify-center text-white transition-colors"
-            >
-              <Minus className="h-4 w-4" />
-            </button>
-            <span>{weight} kg</span>
-            <button
-              onClick={() => {
-                setWeight(weight + 0.5);
-                setIsEditing(true);
-              }}
-              className="w-8 h-8 bg-gray-700 hover:bg-gray-600 rounded-full flex items-center justify-center text-white transition-colors"
-            >
-              <Plus className="h-4 w-4" />
-            </button>
-          </div>
+          <Weight weight={weight} setWeight={setWeight} setIsEditing={setIsEditing} />
 
           <div className="flex items-center gap-2 w-fit mx-auto">
             <button
-              disabled={!isEditing}
+              disabled={!isEditing || saving}
               onClick={handleSave}
               className={`
               bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm
-              ${!isEditing ? "opacity-50 cursor-not-allowed" : ""}
+              ${!isEditing || saving ? "opacity-50 cursor-not-allowed" : ""}
               `}
             >
               Guardar
             </button>
+            {saving && <LoaderPinwheel className="h-4 w-4 animate-spin" />}
           </div>
         </div>
 

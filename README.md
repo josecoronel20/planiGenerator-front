@@ -25,7 +25,7 @@ interface CredentialsGetMe {
   id: number;
   email: string;
   username: string;
-  planification: Planification;
+  planning: planning;
 }
 ```
 
@@ -41,7 +41,7 @@ type Exercise = {
 
 ### Planificación
 ```typescript
-type Planification = {
+type planning = {
   [day: string]: Exercise[];
 };
 ```

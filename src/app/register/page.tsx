@@ -1,7 +1,7 @@
 "use client";
 import type React from "react";
 
-import AuthForm from "../components/authForm/AuthForm";
+import AuthForm from "../(protected)/components/authForm/AuthForm";
 import { register } from "@/utils/api/auth";
 import { useRouter } from "next/navigation";
 
