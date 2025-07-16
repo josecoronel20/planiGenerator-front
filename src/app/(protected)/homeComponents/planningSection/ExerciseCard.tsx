@@ -34,9 +34,9 @@ const ExerciseCard = ({
               <div className="flex items-center gap-1 text-sm text-gray-400">
                 <span className="w-2 h-2 bg-gray-400 rounded-full" />
                 <span className="flex items-center gap-1 w-full">
-                  {exercise.wheight === 0
+                  {exercise.weight === 0
                     ? "sin peso configurado"
-                    : `${exercise.wheight} kg`}
+                    : `${exercise.weight} kg`}
                 </span>
               </div>
             </div>

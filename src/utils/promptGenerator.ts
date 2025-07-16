@@ -28,13 +28,13 @@ Respondé exclusivamente con un objeto JSON con esta estructura:
           "id": "exercise1",
           "exercise": "press inclinado con mancuernas",
           "sets": [8, 8, 8, 8],
-          "wheight": 0
+          "weight": 0
         },
         {
           "id": "exercise2",
           "exercise": "cruce de poleas alto a bajo",
           "sets": [8, 8, 8],
-          "wheight": 0
+          "weight": 0
         },
         
         ...

@@ -35,7 +35,7 @@ type Exercise = {
   id: string;
   exercise: string;
   sets: number[];
-  wheight: number;
+  weight: number;
 };
 ```
 

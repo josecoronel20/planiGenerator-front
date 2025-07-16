@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { day, planning } from "@/utils/types/planning"
 import DaySelector from "./homeComponents/planningSection/DaySelector"
 import RoutineDetails from "./homeComponents/planningSection/RoutineDetails"
@@ -12,17 +12,13 @@ export default function Home() {
   const userplanning: planning = user?.planning || []
   const currentRoutine:day = userplanning[selectedDay - 1] || []
 
-  useEffect(() => {
-    console.log("userplanning", userplanning);  
-  }, [userplanning])
-
   return (
     <div className="min-h-screen bg-black text-white p-4 pt-20">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-2">Mi Rutina Semanal</h1>
-          <p className="text-gray-400">Selecciona un día para ver tu entrenamiento</p>
+          <p className="text-gray-400">{user?.planning ? "Selecciona un día para ver tu entrenamiento" : "No hay planificación disponible"}</p>
         </div>
 
         {/* Day Selector */}

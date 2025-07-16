@@ -2,7 +2,7 @@ export type Exercise = {
   id: string;
   exercise: string;
   sets: number[];
-  wheight: number;
+  weight: number;
 };
 
 export type day = Exercise[];

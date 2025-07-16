@@ -20,7 +20,7 @@ export default function ExerciseModal({
   const {
     exercise: exerciseName,
     sets: initialReps,
-    wheight: initialWeight,
+    weight: initialWeight,
   } = exercise;
   const user = useUserStore((state) => state.user);
   const setUser = useUserStore((state) => state.setUser);
@@ -50,7 +50,7 @@ export default function ExerciseModal({
     const exerciseUpdated = {
       ...exercise,
       sets: reps,
-      wheight: weight,
+      weight: weight,
     };
 
     if (!user || !user.planning) return;

@@ -42,7 +42,7 @@ export default function ModalRoutine({ onClose }: { onClose: () => void }) {
                         {exercise.exercise}
                       </span>
                       <span className="text-xs text-white my-auto">
-                        {exercise.wheight} kg
+                        {exercise.weight} kg
                       </span>
                       <span className="text-xs text-white col-span-2 my-auto">
                         {exercise.sets.map((set) => set).join(" - ")}
@@ -51,7 +51,7 @@ export default function ModalRoutine({ onClose }: { onClose: () => void }) {
                   ))}
                 </div>
               </div>
-            )): <div className="text-white text-center">Aún no hay rutina generada</div>}
+            )): <div className="text-white text-center p-4 min-h-[200px] flex items-center justify-center">Aún no hay rutina generada</div>}
         </section>
       </div>
     </div>
