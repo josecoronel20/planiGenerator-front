@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { planning } from "@/utils/types/planning"
+import { useEffect, useState } from "react"
+import { day, planning } from "@/utils/types/planning"
 import DaySelector from "./homeComponents/planningSection/DaySelector"
 import RoutineDetails from "./homeComponents/planningSection/RoutineDetails"
 import { useUserStore } from "@/store/User"
@@ -9,8 +9,12 @@ import { useUserStore } from "@/store/User"
 export default function Home() {
   const [selectedDay, setSelectedDay] = useState(1)
   const user = useUserStore((state) => state.user)
-  const userplanning: planning = user?.planning || {}
-  const currentRoutine = userplanning[selectedDay] || {}
+  const userplanning: planning = user?.planning || []
+  const currentRoutine:day = userplanning[selectedDay - 1] || []
+
+  useEffect(() => {
+    console.log("userplanning", userplanning);  
+  }, [userplanning])
 
   return (
     <div className="min-h-screen bg-black text-white p-4 pt-20">

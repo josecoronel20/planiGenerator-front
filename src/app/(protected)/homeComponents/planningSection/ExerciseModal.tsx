@@ -23,7 +23,7 @@ export default function ExerciseModal({
     wheight: initialWeight,
   } = exercise;
   const user = useUserStore((state) => state.user);
-  const updateExercise = useUserStore((state) => state.updateExercise);
+  const setUser = useUserStore((state) => state.setUser);
   const [weight, setWeight] = useState(initialWeight);
   const [reps, setReps] = useState(initialReps);
   const [canProgressWeight, setCanProgressWeight] = useState(false);
@@ -53,23 +53,17 @@ export default function ExerciseModal({
       wheight: weight,
     };
 
-    if (!user) return;
+    if (!user || !user.planning) return;
+
+    const planningUpdated = user.planning.map((day) => {
+      return day.map((exercise) =>
+        exercise.id === exerciseUpdated.id ? exerciseUpdated : exercise
+      );
+    });
 
     const userUpdated = {
       ...user,
-      planning: user.planning
-        ? Object.fromEntries(
-            Object.entries(user.planning).map(([day, exercises]) => {
-              const updatedExercises = (exercises as Exercise[]).map(
-                (exercise) =>
-                  exercise.id === exerciseUpdated.id
-                    ? exerciseUpdated
-                    : exercise
-              );
-              return [day, updatedExercises];
-            })
-          )
-        : user.planning,
+      planning: planningUpdated,
     };
 
     const response = await updateUser(userUpdated);
@@ -77,8 +71,11 @@ export default function ExerciseModal({
     if (response.status === 200) {
       setIsEditing(false);
       setSaving(false);
-      updateExercise(exerciseUpdated);
-    } 
+      setUser(userUpdated);
+      console.log("usuario actualizado", response);
+    } else{
+      console.log("error al actualizar el usuario", response);
+    }
   };
 
   return (

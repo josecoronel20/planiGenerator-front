@@ -21,7 +21,7 @@ const RoutineDetails = ({
           <div className="flex items-center gap-4 text-gray-400">
             <div className="flex items-center gap-2">
               <Target className="h-5 w-5" />
-              <span>{Object.keys(currentRoutine).length} ejercicios</span>
+              <span>{currentRoutine.length} ejercicios</span>
             </div>
           </div>
         </div>
@@ -32,8 +32,7 @@ const RoutineDetails = ({
 
       {/* Exercise List */}
       <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
-        {Object.values(currentRoutine)
-          .flat()
+        {currentRoutine
           .map((exercise, index) => (
             <ExerciseCard key={index} exercise={exercise} index={index} />
           ))}
