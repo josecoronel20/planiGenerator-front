@@ -3,7 +3,7 @@
 import { X, Plus, Minus, Info, LoaderPinwheel } from "lucide-react";
 import { Exercise } from "@/utils/types/planning";
 import { useEffect, useState } from "react";
-import { updateUser } from "@/utils/api/user";
+import { updateExercise } from "@/utils/api/user";
 import { useUserStore } from "@/store/User";
 import Weight from "./Weight";
 
@@ -23,7 +23,6 @@ export default function ExerciseModal({
     weight: initialWeight,
   } = exercise;
   const user = useUserStore((state) => state.user);
-  const setUser = useUserStore((state) => state.setUser);
   const [weight, setWeight] = useState(initialWeight);
   const [reps, setReps] = useState(initialReps);
   const [canProgressWeight, setCanProgressWeight] = useState(false);
@@ -47,34 +46,31 @@ export default function ExerciseModal({
   // Handle save
   const handleSave = async () => {
     setSaving(true);
+    if (!user || !user.planning) return;
+    
     const exerciseUpdated = {
       ...exercise,
       sets: reps,
       weight: weight,
     };
 
-    if (!user || !user.planning) return;
+    const response = await updateExercise(exerciseUpdated);
 
-    const planningUpdated = user.planning.map((day) => {
-      return day.map((exercise) =>
-        exercise.id === exerciseUpdated.id ? exerciseUpdated : exercise
-      );
-    });
-
-    const userUpdated = {
-      ...user,
-      planning: planningUpdated,
-    };
-
-    const response = await updateUser(userUpdated);
-
+    //if response is 200, update the user on store
     if (response.status === 200) {
       setIsEditing(false);
       setSaving(false);
-      setUser(userUpdated);
+
+      const planningUpdated = user.planning.map((day:Exercise[]) => {
+        return day.map((exercise:Exercise) =>
+          exercise.id === exerciseUpdated.id ? exerciseUpdated : exercise
+        );
+      });
+
+      useUserStore.setState({ user: { ...user, planning: planningUpdated } });
       console.log("usuario actualizado", response);
     } else{
-      console.log("error al actualizar el usuario", response);
+      console.log("error al actualizar el ejercicio", response);
     }
   };
 

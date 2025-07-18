@@ -15,6 +15,10 @@ import { formSchema } from "@/utils/zodSchemas/formRoutineSchema";
 import promptGenerator from "@/utils/promptGenerator";
 import { useState } from "react";
 import ModalRoutine from "./formRoutineComponents/ModalRoutine";
+import { createPlanning } from "@/utils/api/user";
+import { useUserStore } from "@/store/User";
+import { User } from "@/utils/types/user";
+import { useRouter } from "next/navigation";
 
 export default function FormRoutine() {
   const {
@@ -32,7 +36,8 @@ export default function FormRoutine() {
     resolver: zodResolver(formSchema),
   });
   const [isRoutineOpen, setIsRoutineOpen] = useState(false);
-
+  const router = useRouter();
+  
   const experienceOptions = [
     { value: "beginner", label: "Principiante" },
     { value: "intermediate", label: "Intermedio" },
@@ -63,9 +68,289 @@ export default function FormRoutine() {
     { value: "pushpull", label: "Rotación empuje-tracción" },
   ];
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = async (data: FormData) => {
     const prompt = promptGenerator(data);
     console.log(prompt);
+
+    const planning = [
+      [
+        {
+          "id": "ex01",
+          "exercise": "press inclinado con mancuernas",
+          "sets": [
+            14,
+            12,
+            14,
+            10
+          ],
+          "weight": 33
+        },
+        {
+          "id": "ex02",
+          "exercise": "cruce de poleas alto a bajo",
+          "sets": [
+            11,
+            8,
+            8
+          ],
+          "weight": 0
+        },
+        {
+          "id": "ex03",
+          "exercise": "fondos asistidos en máquina",
+          "sets": [
+            8,
+            8,
+            8
+          ],
+          "weight": 38.5
+        },
+        {
+          "id": "ex04",
+          "exercise": "extensiones de tríceps con cuerda",
+          "sets": [
+            12,
+            12,
+            12,
+            10
+          ],
+          "weight": 35
+        },
+        {
+          "id": "ex05",
+          "exercise": "elevaciones laterales con mancuernas sentado",
+          "sets": [
+            11,
+            9,
+            8
+          ],
+          "weight": 27.5
+        }
+      ],
+      [
+        {
+          "id": "ex06",
+          "exercise": "jalones al pecho con agarre neutro",
+          "sets": [
+            10,
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        },
+        {
+          "id": "ex07",
+          "exercise": "remo en máquina Hammer Strength",
+          "sets": [
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        },
+        {
+          "id": "ex08",
+          "exercise": "face pulls con cuerda",
+          "sets": [
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        },
+        {
+          "id": "ex09",
+          "exercise": "curl bíceps barra Z",
+          "sets": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        },
+        {
+          "id": "ex10",
+          "exercise": "curl concentrado con mancuerna",
+          "sets": [
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        }
+      ],
+      [
+        {
+          "id": "ex11",
+          "exercise": "prensa de piernas",
+          "sets": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        },
+        {
+          "id": "ex12",
+          "exercise": "extensiones de cuádriceps",
+          "sets": [
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        },
+        {
+          "id": "ex13",
+          "exercise": "peso muerto rumano con mancuernas",
+          "sets": [
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        },
+        {
+          "id": "ex14",
+          "exercise": "elevación de talones sentado",
+          "sets": [
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        },
+        {
+          "id": "ex15",
+          "exercise": "abdominales en máquina",
+          "sets": [
+            8,
+            8
+          ],
+          "weight": 0
+        }
+      ],
+      [
+        {
+          "id": "ex16",
+          "exercise": "press inclinado en máquina convergente",
+          "sets": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        },
+        {
+          "id": "ex17",
+          "exercise": "cruce de poleas desde banco inclinado",
+          "sets": [
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        },
+        {
+          "id": "ex18",
+          "exercise": "extensión de tríceps con barra recta en polea",
+          "sets": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        },
+        {
+          "id": "ex19",
+          "exercise": "patada de tríceps con mancuerna",
+          "sets": [
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        },
+        {
+          "id": "ex20",
+          "exercise": "elevaciones frontales con cuerda",
+          "sets": [
+            8,
+            8
+          ],
+          "weight": 0
+        }
+      ],
+      [
+        {
+          "id": "ex21",
+          "exercise": "remo bajo con polea",
+          "sets": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        },
+        {
+          "id": "ex22",
+          "exercise": "jalones con cuerda al rostro (face pulls)",
+          "sets": [
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        },
+        {
+          "id": "ex23",
+          "exercise": "curl en polea baja con cuerda",
+          "sets": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        },
+        {
+          "id": "ex24",
+          "exercise": "curl martillo en banco inclinado",
+          "sets": [
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        },
+        {
+          "id": "ex25",
+          "exercise": "plancha abdominal con carga",
+          "sets": [
+            8,
+            8,
+            8
+          ],
+          "weight": 0
+        }
+      ]
+    ]
+    const user:User = useUserStore.getState().user as User;
+
+    const response = await createPlanning(planning, user.id);
+
+    if (response.status === 200) {
+      useUserStore.setState({ user: { ...user, planning: planning } });
+      router.push("/");
+    } else {
+      console.log("Error creating planning");
+    }
   };
 
   return (

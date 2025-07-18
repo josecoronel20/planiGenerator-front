@@ -5,8 +5,10 @@ import type React from "react";
 import AuthForm from "../(protected)/components/authForm/AuthForm";
 import { login } from "@/utils/api/auth";
 import { useRouter } from "next/navigation";
+import { useMiddleware } from "@/hooks/useMiddleware";
 
 export default function LoginPage() {
+  useMiddleware();
   const router = useRouter();
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
