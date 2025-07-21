@@ -1,14 +1,13 @@
 "use client";
 
-import { Dumbbell } from "lucide-react";
+import { Dumbbell, Loader2 } from "lucide-react";
 import { FormData } from "@/types/formRoutineTypes";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema } from "@/zodSchemas/formRoutineSchema";
-import promptGenerator from "@/utils/promptGenerator";
+import { buildUserPrompt } from "@/utils/buildUserPrompt";
 import { useState } from "react";
 import ModalRoutine from "./formRoutineComponents/ModalRoutine";
-import { createWorkout } from "@/api/user";
 import { useUserStore } from "@/store/User";
 import { User } from "@/types/user";
 import { useRouter } from "next/navigation";
@@ -18,6 +17,8 @@ import SplitInput from "./formRoutineComponents/SplitInput";
 import ExperienceInput from "./formRoutineComponents/ExperienceInput";
 import PriorityInput from "./formRoutineComponents/PriorityInput";
 import InjuriesInput from "./formRoutineComponents/InjuriesInput";
+import workoutGenerator from "@/api/workoutGenerator";
+import LoadingTips from "./formRoutineComponents/LoadingTips";
 
 export default function FormRoutine() {
   const {
@@ -36,291 +37,20 @@ export default function FormRoutine() {
   });
   const [isRoutineOpen, setIsRoutineOpen] = useState(false);
   const router = useRouter();
-  
+  const [generatingWorkout, setGeneratingWorkout] = useState(false);
 
   const onSubmit = async (data: FormData) => {
-    const prompt = promptGenerator(data);
-    console.log(prompt);
+    setGeneratingWorkout(true);
+    const prompt = buildUserPrompt(data);
+    const response = await workoutGenerator(prompt);
 
-    const workout = [
-      [
-        {
-          "id": "ex01",
-          "exercise": "press inclinado con mancuernas",
-          "sets": [
-            14,
-            12,
-            14,
-            10
-          ],
-          "weight": 33
-        },
-        {
-          "id": "ex02",
-          "exercise": "cruce de poleas alto a bajo",
-          "sets": [
-            11,
-            8,
-            8
-          ],
-          "weight": 0
-        },
-        {
-          "id": "ex03",
-          "exercise": "fondos asistidos en máquina",
-          "sets": [
-            8,
-            8,
-            8
-          ],
-          "weight": 38.5
-        },
-        {
-          "id": "ex04",
-          "exercise": "extensiones de tríceps con cuerda",
-          "sets": [
-            12,
-            12,
-            12,
-            10
-          ],
-          "weight": 35
-        },
-        {
-          "id": "ex05",
-          "exercise": "elevaciones laterales con mancuernas sentado",
-          "sets": [
-            11,
-            9,
-            8
-          ],
-          "weight": 27.5
-        }
-      ],
-      [
-        {
-          "id": "ex06",
-          "exercise": "jalones al pecho con agarre neutro",
-          "sets": [
-            10,
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        },
-        {
-          "id": "ex07",
-          "exercise": "remo en máquina Hammer Strength",
-          "sets": [
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        },
-        {
-          "id": "ex08",
-          "exercise": "face pulls con cuerda",
-          "sets": [
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        },
-        {
-          "id": "ex09",
-          "exercise": "curl bíceps barra Z",
-          "sets": [
-            8,
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        },
-        {
-          "id": "ex10",
-          "exercise": "curl concentrado con mancuerna",
-          "sets": [
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        }
-      ],
-      [
-        {
-          "id": "ex11",
-          "exercise": "prensa de piernas",
-          "sets": [
-            8,
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        },
-        {
-          "id": "ex12",
-          "exercise": "extensiones de cuádriceps",
-          "sets": [
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        },
-        {
-          "id": "ex13",
-          "exercise": "peso muerto rumano con mancuernas",
-          "sets": [
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        },
-        {
-          "id": "ex14",
-          "exercise": "elevación de talones sentado",
-          "sets": [
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        },
-        {
-          "id": "ex15",
-          "exercise": "abdominales en máquina",
-          "sets": [
-            8,
-            8
-          ],
-          "weight": 0
-        }
-      ],
-      [
-        {
-          "id": "ex16",
-          "exercise": "press inclinado en máquina convergente",
-          "sets": [
-            8,
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        },
-        {
-          "id": "ex17",
-          "exercise": "cruce de poleas desde banco inclinado",
-          "sets": [
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        },
-        {
-          "id": "ex18",
-          "exercise": "extensión de tríceps con barra recta en polea",
-          "sets": [
-            8,
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        },
-        {
-          "id": "ex19",
-          "exercise": "patada de tríceps con mancuerna",
-          "sets": [
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        },
-        {
-          "id": "ex20",
-          "exercise": "elevaciones frontales con cuerda",
-          "sets": [
-            8,
-            8
-          ],
-          "weight": 0
-        }
-      ],
-      [
-        {
-          "id": "ex21",
-          "exercise": "remo bajo con polea",
-          "sets": [
-            8,
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        },
-        {
-          "id": "ex22",
-          "exercise": "jalones con cuerda al rostro (face pulls)",
-          "sets": [
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        },
-        {
-          "id": "ex23",
-          "exercise": "curl en polea baja con cuerda",
-          "sets": [
-            8,
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        },
-        {
-          "id": "ex24",
-          "exercise": "curl martillo en banco inclinado",
-          "sets": [
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        },
-        {
-          "id": "ex25",
-          "exercise": "plancha abdominal con carga",
-          "sets": [
-            8,
-            8,
-            8
-          ],
-          "weight": 0
-        }
-      ]
-    ]
 
     const user:User = useUserStore.getState().user as User;
-
-    const response = await createWorkout(workout, user.id);
-
-    if (response.status === 200) {
-      useUserStore.setState({ user: { ...user, workout: workout } });
+    if (response.data) {
+      useUserStore.setState({ user: { ...user, workout: response.data } });
+      console.log(response.data);
+      setGeneratingWorkout(false);
       router.push("/");
-    } else {
-      console.log("Error creating workout");
     }
   };
 
@@ -372,6 +102,19 @@ export default function FormRoutine() {
               objetivos.
             </p>
           </div>
+
+          {generatingWorkout && (
+            <div className="fixed z-50 top-0 left-0 w-full h-full flex items-center justify-center bg-white/50 backdrop-blur-xs flex-col gap-4">
+              <div className="flex items-center justify-center">
+                <p className="text-sm text-[#e63946] font-semibold text-center">
+                  Generando rutina...
+                </p> 
+                <Loader2 className="animate-spin text-[#e63946]" />
+              </div>
+
+              <LoadingTips />
+            </div>
+          )}
         </div>
       </div>
     </div>
