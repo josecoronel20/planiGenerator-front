@@ -44,11 +44,10 @@ export default function FormRoutine() {
     const prompt = buildUserPrompt(data);
     const response = await workoutGenerator(prompt);
 
-
     const user:User = useUserStore.getState().user as User;
-    if (response.data) {
-      useUserStore.setState({ user: { ...user, workout: response.data } });
-      console.log(response.data);
+    if (response) {
+      useUserStore.setState({ user: { ...user, workout: response } });
+      console.log(response);
       setGeneratingWorkout(false);
       router.push("/");
     }
