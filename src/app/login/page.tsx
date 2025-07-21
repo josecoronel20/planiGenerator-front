@@ -6,10 +6,12 @@ import AuthForm from "../(protected)/components/authForm/AuthForm";
 import { login } from "@/api/auth";
 import { useRouter } from "next/navigation";
 import { useMiddleware } from "@/hooks/useMiddleware";
+import { useState } from "react";
 
 export default function LoginPage() {
   useMiddleware();
   const router = useRouter();
+  const [response, setResponse] = useState<{ message: string } | null>(null);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
@@ -19,11 +21,13 @@ export default function LoginPage() {
     if (response.message === "Login successful") {
       console.log(response);
       router.push("/");
+    } else {
+      setResponse(response);
     }
   };
 
   return (
    
-    <AuthForm type="login" handlerSubmit={handleSubmit} />
+    <AuthForm type="login" handlerSubmit={handleSubmit} message={response?.message}/>
   );
 }

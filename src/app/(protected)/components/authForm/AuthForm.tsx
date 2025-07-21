@@ -6,9 +6,11 @@ import Link from "next/link";
 export default function AuthForm({
   type,
   handlerSubmit,
+  message,
 }: {
   type: "login" | "register";
   handlerSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  message?: string;
 }) {
   return (
     <div className="min-h-screen bg-black flex items-center justify-center p-4">
@@ -89,10 +91,17 @@ export default function AuthForm({
               </div>
             </div>
 
+            {/*Error Dialog */}
+            {message && (
+              <div className="mt-6 text-center">
+                <p className="text-red-500">{message}</p>
+              </div>
+            )}
+
             {/* Submit button */}
             <button
               type="submit"
-              className="w-full bg-[#e63946] hover:bg-red-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#e63946] focus:ring-offset-2 focus:ring-offset-gray-800"
+              className="w-full bg-[#e63946] hover:bg-red-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#e63946] focus:ring-offset-2 focus:ring-offset-gray-800 cursor-pointer"
             >
               {type === "login" ? "Iniciar sesión" : "Crear cuenta"}
             </button>
@@ -112,8 +121,6 @@ export default function AuthForm({
               </Link>
             </p>
           </div>
-
-          {/* Dialog */}
         </div>
       </div>
     </div>
