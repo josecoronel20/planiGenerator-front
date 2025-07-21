@@ -1,5 +1,5 @@
 import { experienceOptions } from "@/constants/optionsForm";
-import { FormData } from "@/utils/types/formRoutineTypes";
+import { FormData } from "@/types/formRoutineTypes";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import React from "react";
 import { AlertCircle } from "lucide-react";

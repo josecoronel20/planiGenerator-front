@@ -1,16 +1,16 @@
 "use client";
 
 import { Dumbbell } from "lucide-react";
-import { FormData } from "@/utils/types/formRoutineTypes";
+import { FormData } from "@/types/formRoutineTypes";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { formSchema } from "@/utils/zodSchemas/formRoutineSchema";
+import { formSchema } from "@/zodSchemas/formRoutineSchema";
 import promptGenerator from "@/utils/promptGenerator";
 import { useState } from "react";
 import ModalRoutine from "./formRoutineComponents/ModalRoutine";
-import { createPlanning } from "@/utils/api/user";
+import { createWorkout } from "@/api/user";
 import { useUserStore } from "@/store/User";
-import { User } from "@/utils/types/user";
+import { User } from "@/types/user";
 import { useRouter } from "next/navigation";
 import Header from "./formRoutineComponents/Header";
 import TrainingDaysInput from "./formRoutineComponents/TrainingDaysInput";
@@ -42,7 +42,7 @@ export default function FormRoutine() {
     const prompt = promptGenerator(data);
     console.log(prompt);
 
-    const planning = [
+    const workout = [
       [
         {
           "id": "ex01",
@@ -311,16 +311,16 @@ export default function FormRoutine() {
         }
       ]
     ]
-    
+
     const user:User = useUserStore.getState().user as User;
 
-    const response = await createPlanning(planning, user.id);
+    const response = await createWorkout(workout, user.id);
 
     if (response.status === 200) {
-      useUserStore.setState({ user: { ...user, planning: planning } });
+      useUserStore.setState({ user: { ...user, workout: workout } });
       router.push("/");
     } else {
-      console.log("Error creating planning");
+      console.log("Error creating workout");
     }
   };
 

@@ -1,6 +1,6 @@
 import { AlertCircle, Calendar } from "lucide-react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { FormData } from "@/utils/types/formRoutineTypes";
+import { FormData } from "@/types/formRoutineTypes";
 import React from "react";
 
 interface Props {

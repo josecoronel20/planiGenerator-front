@@ -1,6 +1,6 @@
 import useSWR, { mutate } from "swr";
 import { User } from "../types/user";
-import { Exercise, Planning } from "../types/planning";
+import { Exercise, Workout } from "../types/workout";
 
 export const useFetchUser = () => {
   const fetcher = (url: string) =>
@@ -39,12 +39,12 @@ export const updateUser = async (body: User) => {
   return response;
 };
 
-export const createPlanning = async (planning:Planning, id:number) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/createPlanning`, {
+export const createWorkout = async (workout:Workout, id:number) => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/createWorkout`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
-    body: JSON.stringify({planning, id}),
+    body: JSON.stringify({workout, id}),
   });
 
   return response;

@@ -25,7 +25,7 @@ interface CredentialsGetMe {
   id: number;
   email: string;
   username: string;
-  planning: planning;
+  workout: workout;
 }
 ```
 
@@ -41,7 +41,7 @@ type Exercise = {
 
 ### Planificación
 ```typescript
-type planning = {
+type workout = {
   [day: string]: Exercise[];
 };
 ```
@@ -159,11 +159,11 @@ const formSchema = z.object({
 ### Estado Global
 ```typescript
 // Zustand store
-export const usePlanningStore = create<PlanningState>((set) => ({
-  planning: [],
-  setPlanning: (exercises) => set({ planning: exercises }),
+export const useWorkoutStore = create<WorkoutState>((set) => ({
+  workout: [],
+  setWorkout: (exercises) => set({ workout: exercises }),
   updateExercise: (updated) => set((state) => ({
-    planning: state.planning.map((ex) =>
+    workout: state.workout.map((ex) =>
       ex.id === updated.id ? updated : ex
     ),
   })),

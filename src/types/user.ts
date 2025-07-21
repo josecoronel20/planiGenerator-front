@@ -1,14 +1,14 @@
-import { planning } from "./planning";
+import { workout } from "./workout";
 
 export type User = {
   id: number;
   email: string;
   password: string;
   username: string;
-  planning: planning | null;
+  workout: workout | null;
 };
 
 export type UserUpdate = {
   id: number;
-  planning: planning;
+  workout: workout;
 };

@@ -1,4 +1,4 @@
-import { FormData } from "@/utils/types/formRoutineTypes";
+import { FormData } from "@/types/formRoutineTypes";
 import { UseFormRegister } from "react-hook-form";
 import React from "react";
 

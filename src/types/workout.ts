@@ -5,5 +5,5 @@ export type Exercise = {
   weight: number;
 };
 
-export type PlanningDay = Exercise[];
-export type Planning = PlanningDay[];
+export type WorkoutDay = Exercise[];
+export type Workout = WorkoutDay[];

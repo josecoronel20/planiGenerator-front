@@ -1,9 +1,9 @@
 "use client";
 
 import { X, Plus, Minus, Info, LoaderPinwheel } from "lucide-react";
-import { Exercise } from "@/utils/types/planning";
+import { Exercise } from "@/types/workout";
 import { useEffect, useState } from "react";
-import { updateExercise } from "@/utils/api/user";
+import { updateExercise } from "@/api/user";
 import { useUserStore } from "@/store/User";
 import Weight from "./Weight";
 
@@ -46,7 +46,7 @@ export default function ExerciseModal({
   // Handle save
   const handleSave = async () => {
     setSaving(true);
-    if (!user || !user.planning) return;
+    if (!user || !user.workout) return;
     
     const exerciseUpdated = {
       ...exercise,
@@ -61,13 +61,13 @@ export default function ExerciseModal({
       setIsEditing(false);
       setSaving(false);
 
-      const planningUpdated = user.planning.map((day:Exercise[]) => {
+      const workoutUpdated = user.workout.map((day:Exercise[]) => {
         return day.map((exercise:Exercise) =>
           exercise.id === exerciseUpdated.id ? exerciseUpdated : exercise
         );
       });
 
-      useUserStore.setState({ user: { ...user, planning: planningUpdated } });
+      useUserStore.setState({ user: { ...user, workout: workoutUpdated } });
       console.log("usuario actualizado", response);
     } else{
       console.log("error al actualizar el ejercicio", response);

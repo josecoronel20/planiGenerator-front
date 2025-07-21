@@ -1,5 +1,5 @@
 
-import { User } from "@/utils/types/user";
+import { User } from "@/types/user";
 import { create } from "zustand";
 
 interface UserStore {

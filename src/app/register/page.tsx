@@ -2,7 +2,7 @@
 import type React from "react";
 
 import AuthForm from "../(protected)/components/authForm/AuthForm";
-import { register } from "@/utils/api/auth";
+import { register } from "@/api/auth";
 import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {

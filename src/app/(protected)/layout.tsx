@@ -1,7 +1,7 @@
 "use client";
 
 import Nav from "./components/layout/Nav";
-import { usePlanningFormated } from "@/hooks/usePlanningFormated";
+import { useWorkoutFormated } from "@/hooks/useWorkoutFormated";
 
 export default function ProtectedLayout({
   children,
@@ -9,7 +9,7 @@ export default function ProtectedLayout({
   children: React.ReactNode;
 }) {
 
-  usePlanningFormated();
+  useWorkoutFormated();
   
   return (
     <>

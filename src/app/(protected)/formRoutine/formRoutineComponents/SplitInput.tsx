@@ -1,5 +1,5 @@
 import { splitOptions } from "@/constants/optionsForm";
-import { FormData } from "@/utils/types/formRoutineTypes";
+import { FormData } from "@/types/formRoutineTypes";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { AlertCircle } from "lucide-react";
 import React from "react";

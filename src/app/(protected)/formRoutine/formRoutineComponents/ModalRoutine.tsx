@@ -1,6 +1,7 @@
 "use client";
 
 import { useUserStore } from "@/store/User";
+import { WorkoutDay } from "@/types/workout";
 import { X } from "lucide-react";
 
 export default function ModalRoutine({ onClose }: { onClose: () => void }) {
@@ -24,10 +25,10 @@ export default function ModalRoutine({ onClose }: { onClose: () => void }) {
         </div>
 
         <section className="overflow-y-scroll max-h-[500px] flex flex-col gap-4 pr-2">
-          {user.planning ?
-            Object.entries(user.planning).map(([day, exercises]) => (
-              <div key={day}>
-                <h3 className="text-md font-bold text-[#e63946]">día {day}</h3>
+          {user.workout ?
+            user.workout.map((day:WorkoutDay, index:number) => (
+              <div key={index}>
+                <h3 className="text-md font-bold text-[#e63946]">día {index + 1}</h3>
 
                 <div className="flex flex-col gap-2">
                   <div className="grid grid-cols-5 gap-2 justify-items-center">
@@ -36,7 +37,7 @@ export default function ModalRoutine({ onClose }: { onClose: () => void }) {
                     <span className="text-sm text-white font-bold col-span-2">reps x serie</span>
                   </div>
 
-                  {exercises.map((exercise) => (
+                  {day.map((exercise) => (
                     <div key={exercise.id} className="grid grid-cols-5 gap-2 justify-items-center border border-gray-700 rounded-md p-2">
                       <span className="text-xs text-white col-span-2 my-auto">
                         {exercise.exercise}
@@ -45,7 +46,7 @@ export default function ModalRoutine({ onClose }: { onClose: () => void }) {
                         {exercise.weight} kg
                       </span>
                       <span className="text-xs text-white col-span-2 my-auto">
-                        {exercise.sets.map((set) => set).join(" - ")}
+                        {exercise.sets.map((set:number) => set).join(" - ")}
                       </span>
                     </div>
                   ))}

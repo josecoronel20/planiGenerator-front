@@ -1,5 +1,5 @@
 import { priorityOptions } from "@/constants/optionsForm";
-import { FormData } from "@/utils/types/formRoutineTypes";
+import { FormData } from "@/types/formRoutineTypes";
     import { AlertCircle, Target } from "lucide-react";
 import React from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";

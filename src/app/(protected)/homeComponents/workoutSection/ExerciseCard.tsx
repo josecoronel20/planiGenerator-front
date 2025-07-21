@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Exercise } from "@/utils/types/planning";
+import { Exercise } from "@/types/workout";
 import ExerciseModal from "./ExerciseModal";
 
 const ExerciseCard = ({

@@ -1,12 +1,12 @@
-import { planning } from "@/utils/types/planning";
+import { workout } from "@/types/workout";
 import React from "react";
 
 const DaySelector = ({
-  userplanning,
+  userworkout,
   selectedDay,
   setSelectedDay,
 }: {
-  userplanning: planning;
+  userworkout: workout;
   selectedDay: number;
   setSelectedDay: (day: number) => void;
 }) => {
@@ -15,7 +15,7 @@ const DaySelector = ({
   return (
     <section className="mb-8">
       <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-        {userplanning.map((_, index) => (
+        {userworkout.map((_, index) => (
           <button
             key={index}
             onClick={() => setSelectedDay(index + 1)}

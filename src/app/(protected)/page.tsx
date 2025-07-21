@@ -1,16 +1,16 @@
 "use client"
 
 import { useState } from "react"
-import { day, planning } from "@/utils/types/planning"
-import DaySelector from "./homeComponents/planningSection/DaySelector"
-import RoutineDetails from "./homeComponents/planningSection/RoutineDetails"
+import { WorkoutDay, Workout } from "@/types/workout"
+import DaySelector from "./homeComponents/workoutSection/DaySelector"
+import RoutineDetails from "./homeComponents/workoutSection/RoutineDetails"
 import { useUserStore } from "@/store/User"
 
 export default function Home() {
   const [selectedDay, setSelectedDay] = useState(1)
   const user = useUserStore((state) => state.user)
-  const userplanning: planning = user?.planning || []
-  const currentRoutine:day = userplanning[selectedDay - 1] || []
+  const userworkout: Workout = user?.workout || []
+  const currentRoutine:WorkoutDay = userworkout[selectedDay - 1] || []
 
   return (
     <div className="min-h-screen bg-black text-white p-4 pt-20">
@@ -18,11 +18,11 @@ export default function Home() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-2">Mi Rutina Semanal</h1>
-          <p className="text-gray-400">{user?.planning ? "Selecciona un día para ver tu entrenamiento" : "No hay planificación disponible"}</p>
+          <p className="text-gray-400">{user?.workout ? "Selecciona un día para ver tu entrenamiento" : "No hay planificación disponible"}</p>
         </div>
 
         {/* Day Selector */}
-        <DaySelector userplanning={userplanning} selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
+        <DaySelector userworkout={userworkout} selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
 
         {/* Routine Details */}
         <RoutineDetails selectedDay={selectedDay} currentRoutine={currentRoutine} />

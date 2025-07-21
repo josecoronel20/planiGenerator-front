@@ -3,7 +3,7 @@ import { useFetchUser } from "@/utils/fetchUser";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-interface PlanningNoFormated {
+interface WorkoutNoFormated {
   dayIndex: number;
   exercises: {
     id: string;
@@ -13,7 +13,7 @@ interface PlanningNoFormated {
   }[];
 }
 
-export const usePlanningFormated = () => {
+export const useWorkoutFormated = () => {
   const router = useRouter();
   const { data, isLoading } = useFetchUser();
 
@@ -25,7 +25,7 @@ export const usePlanningFormated = () => {
     }
 
     if (data && !isLoading) {
-      const planningFormated = data.planning.map((day: PlanningNoFormated) =>
+      const workoutFormated = data.workout.map((day: WorkoutNoFormated) =>
         day.exercises.map(({ id, exercise, sets, weight }:{id:string, exercise:string, sets:number[], weight:number}) => ({
           id,
           exercise,
@@ -33,8 +33,8 @@ export const usePlanningFormated = () => {
           weight,
         }))
       );
-      console.log(planningFormated);
-      useUserStore.setState({ user: { ...data, planning: planningFormated } });
+      console.log(workoutFormated);
+      useUserStore.setState({ user: { ...data, workout: workoutFormated } });
     }
   }, [data, isLoading, router]);
 };

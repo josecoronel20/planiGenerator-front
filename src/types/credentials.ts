@@ -1,10 +1,10 @@
-import { planning } from "./planning";
+import { workout } from "./workout";
 
 export interface CredentialsGetMe {
     id: number;
     email: string;
     username: string;
-    planning: planning
+    workout: workout
 }
 
 export interface CredentialsLogin {

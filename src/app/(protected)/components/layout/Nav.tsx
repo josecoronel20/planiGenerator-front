@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Menu, X, User, LogOut, Dumbbell } from "lucide-react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { logout } from "@/utils/api/auth"
+import { logout } from "@/api/auth"
 import { useRouter } from "next/navigation"
 import { useUserStore } from "@/store/User"
 

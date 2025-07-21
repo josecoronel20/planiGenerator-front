@@ -1,7 +1,7 @@
 import { Dumbbell, Target } from "lucide-react";
 import React from "react";
 import ExerciseCard from "./ExerciseCard";
-import { Exercise } from "@/utils/types/planning";
+import { Exercise } from "@/types/workout";
 import Link from "next/link";
 
 const RoutineDetails = ({
