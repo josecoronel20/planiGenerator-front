@@ -12,6 +12,7 @@ export default function AuthForm({
   handlerSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   message?: string;
 }) {
+
   return (
     <div className="min-h-screen bg-black flex items-center justify-center p-4">
       <div className="w-full max-w-md">
@@ -92,7 +93,7 @@ export default function AuthForm({
             </div>
 
             {/*Error Dialog */}
-            {message && (
+            {message && message !== "Usuario creado correctamente" && message !== "Inicio de sesión exitoso" && (
               <div className="mt-6 text-center">
                 <p className="text-red-500">{message}</p>
               </div>

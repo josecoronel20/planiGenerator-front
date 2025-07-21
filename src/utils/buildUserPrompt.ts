@@ -16,12 +16,12 @@ ${injuryLine}
 Formato exacto:
 [
   [
-    { "id": "ex01", "exercise": "press inclinado mancuernas", "sets": [8,8,8], "weight": 0 },
-    { "id": "ex02", "exercise": "cruce poleas", "sets": [8,8,8], "weight": 0 }
+    { "exercise": "press inclinado mancuernas", "sets": [8,8,8], "weight": 0 },
+    { "exercise": "cruce poleas", "sets": [8,8,8], "weight": 0 }
   ],
   [
-    { "id": "ex03", "exercise": "jalón al pecho", "sets": [8,8,8,8], "weight": 0 },
-    { "id": "ex04", "exercise": "remo barra", "sets": [8,8,8], "weight": 0 }
+    { "exercise": "jalón al pecho", "sets": [8,8,8,8], "weight": 0 },
+    { "exercise": "remo barra", "sets": [8,8,8], "weight": 0 }
   ]
 ]
 `.trim();

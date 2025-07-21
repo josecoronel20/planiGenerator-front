@@ -18,7 +18,7 @@ const Header = ({setIsRoutineOpen}:{setIsRoutineOpen: (isOpen: boolean) => void}
             <p className="text-gray-400">
               Completa tus datos para crear una rutina personalizada
             </p>
-            {user.workout && (
+            {user.workout.length > 0 && (
               <button
                 className="border border-[#e63946] text-white px-4 py-2 rounded-md cursor-pointer flex items-center gap-2 w-full justify-center hover:bg-[#e63946]/80 transition-all duration-200"
                 onClick={() => setIsRoutineOpen(true)}
