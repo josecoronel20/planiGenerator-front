@@ -1,4 +1,4 @@
-import { workout } from "@/types/workout";
+import { Workout } from "@/types/workout";
 import React from "react";
 
 const DaySelector = ({
@@ -6,7 +6,7 @@ const DaySelector = ({
   selectedDay,
   setSelectedDay,
 }: {
-  userworkout: workout;
+  userworkout: Workout;
   selectedDay: number;
   setSelectedDay: (day: number) => void;
 }) => {

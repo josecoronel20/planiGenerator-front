@@ -1,10 +1,10 @@
-import { workout } from "./workout";
+import { Workout } from "./workout";
 
 export interface CredentialsGetMe {
     id: number;
     email: string;
     username: string;
-    workout: workout
+    workout: Workout
 }
 
 export interface CredentialsLogin {
