@@ -2,50 +2,34 @@ import { FormData } from "./types/formRoutineTypes";
 
 const promptGenerator = (data: FormData) => {
   const { trainingDays, split, experience, priority, injuries } = data;
-  const prompt = `exp:${experience},dias:${trainingDays},split:${split},prioridad:${priority},lesiones:${injuries}.Generá una rutina personalizada de hipertrofia para gimnasio en formato JSON, organizada por día según el split y la cantidad de días indicados.
 
-Adaptá la dificultad y selección de ejercicios según el nivel de experiencia indicado (b = básico, i = intermedio, a = avanzado).
-- Para básico, usá ejercicios simples, con menor volumen e intensidad.
-- Para intermedio, usá variantes moderadas.
-- Para avanzado, incluí mayor volumen, ejercicios más complejos y variedad.
+  const prompt = `exp:${experience},dias:${trainingDays},split:${split},prioridad:${priority}${
+    injuries ? `,lesiones:${injuries}` : ""
+  }.
+
+Generá una rutina de hipertrofia en JSON: array de arrays, cada subarray = día. Solo ejercicios + series, sin días ni reps. Adaptá según exp (b: básico, i: intermedio, a: avanzado). Usá ejercicios generales (barra, mancuernas, polea, peso corporal), evitá máquinas específicas.
+
+Estructura con base científica: priorizá ejercicios óptimos para hipertrofia, evitá movimientos populares pero ineficientes (ej: preferí press inclinado mancuernas vs press banca plano).
 
 ${
   injuries
-    ? "Evitá ejercicios que puedan generar estrés sobre las zonas lesionadas indicadas. Si es necesario, reemplazá por variantes más seguras."
+    ? `ten en cuenta la siguiente lesión: ${injuries}, reemplazá ejercicios si es necesario.`
     : ""
 }
 
-Priorizá ejercicios eficientes según evidencia científica y biomecánica.  
-Por ejemplo, para pecho preferí ejercicios inclinados con mancuernas o poleas por su activación superior y menor riesgo articular, evitando banco plano tradicional si no aporta ventajas.
+Formato exacto:
 
-Para cada día, listá ejercicios con su cantidad de series.  
-No incluyas repeticiones, explicaciones ni días específicos (solo día 1, día 2, etc.).  
-Respondé exclusivamente con un objeto JSON con esta estructura:
+[
+  [
+    { "id": "ex01", "exercise": "press inclinado mancuernas", "sets": [8,8,8], "weight": 0 },
+    { "id": "ex02", "exercise": "cruce poleas", "sets": [8,8,8], "weight": 0 }
+  ],
+  [
+    { "id": "ex03", "exercise": "jalón al pecho", "sets": [8,8,8,8], "weight": 0 },
+    { "id": "ex04", "exercise": "remo barra", "sets": [8,8,8], "weight": 0 }
+  ]
+]`;
 
-{
-      "1": [
-        {
-          "id": "exercise1",
-          "exercise": "press inclinado con mancuernas",
-          "sets": [8, 8, 8, 8],
-          "weight": 0
-        },
-        {
-          "id": "exercise2",
-          "exercise": "cruce de poleas alto a bajo",
-          "sets": [8, 8, 8],
-          "weight": 0
-        },
-        
-        ...
-      ],
-  "2": [ ... ],
-  ...
-}
-
-Incluí todos los días especificados, sin omitir ninguno.
-
-    `;
   return prompt;
 };
 

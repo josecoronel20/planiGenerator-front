@@ -15,11 +15,9 @@ export const useFetchUser = () => {
     }
   );
 
-  console.log("data frome fetcher", data);
-
   if (error) {
     return { data: null, isLoading: false };
   }
-  console.log("data frome fetcher", data);
+
   return { data, isLoading };
 };
