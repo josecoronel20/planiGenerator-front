@@ -4,7 +4,7 @@ const workoutGenerator = async (prompt: string) => {
     headers: {
       "Content-Type": "application/json",
     },
-    credentials: "include", // ✔️ correcta ubicación
+    credentials: "include", 
     body: JSON.stringify({ prompt }),
   });
 

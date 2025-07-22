@@ -103,7 +103,7 @@ export default function FormRoutine() {
           </div>
 
           {generatingWorkout && (
-            <div className="fixed z-50 top-0 left-0 w-full h-full flex items-center justify-center bg-white/50 backdrop-blur-xs flex-col gap-4">
+            <div className="fixed z-50 top-0 left-0 w-full h-full flex items-center justify-center bg-white/50 backdrop-blur-xs flex-col gap-4 p-4">
               <div className="flex items-center justify-center">
                 <p className="text-sm text-[#e63946] font-semibold text-center">
                   Generando rutina...
