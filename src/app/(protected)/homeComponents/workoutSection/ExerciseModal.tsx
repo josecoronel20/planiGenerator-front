@@ -1,6 +1,6 @@
 "use client";
 
-import { X, Plus, Minus, Info, LoaderPinwheel } from "lucide-react";
+import { X, Plus, Minus, Info, LoaderCircle } from "lucide-react";
 import { Exercise } from "@/types/workout";
 import { useEffect, useState } from "react";
 import { updateExercise } from "@/api/user";
@@ -101,13 +101,13 @@ export default function ExerciseModal({
               disabled={!isEditing || saving}
               onClick={handleSave}
               className={`
-              bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm
+              bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm min-w-20 min-h-10 flex items-center justify-center
               ${!isEditing || saving ? "opacity-50 cursor-not-allowed" : ""}
               `}
             >
-              Guardar
+              {saving ? <LoaderCircle className="h-4 w-4 animate-spin" /> : "Guardar"}
             </button>
-            {saving && <LoaderPinwheel className="h-4 w-4 animate-spin" />}
+            
           </div>
         </div>
 
