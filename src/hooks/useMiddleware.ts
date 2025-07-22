@@ -14,5 +14,7 @@ export const useMiddleware = () => {
     if (!isLoading && data !== null && currentPath === "/login") {
       router.push("/");
     }
+
+
   }, [isLoading, data, router, currentPath]);
 };

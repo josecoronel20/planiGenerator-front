@@ -19,11 +19,6 @@ export const useWorkoutFormated = () => {
 
   useEffect(() => {
 
-    if (data === null && !isLoading) {
-      router.push("/login");
-      return;
-    }
-
     if (data && !isLoading) {
       const workoutFormated = data.workout.map((day: WorkoutNoFormated) =>
         day.exercises.map(({ id, exercise, sets, weight }:{id:string, exercise:string, sets:number[], weight:number}) => ({
@@ -33,7 +28,6 @@ export const useWorkoutFormated = () => {
           weight,
         }))
       );
-      console.log(workoutFormated);
       useUserStore.setState({ user: { ...data, workout: workoutFormated } });
     }
   }, [data, isLoading, router]);

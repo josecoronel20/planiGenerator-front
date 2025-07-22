@@ -28,9 +28,11 @@ export default function Home() {
         <RoutineDetails selectedDay={selectedDay} currentRoutine={currentRoutine} />
 
         {/* Navigation Hint */}
-        <div className="mt-6 text-center">
-          <p className="text-gray-500 text-sm">Usa los botones de arriba para navegar entre los días de la semana</p>
-        </div>
+        {user?.workout && user?.workout.length > 0 && (
+          <div className="mt-6 text-center">
+            <p className="text-gray-500 text-sm">Usa los botones de arriba para navegar entre los días de la semana</p>
+          </div>
+        )}
       </div>
     </div>
   )
