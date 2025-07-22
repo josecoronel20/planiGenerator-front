@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import AuthForm from "../(protected)/components/authForm/AuthForm";
+import AuthForm from "../../components/authForm/AuthForm";
 import { login } from "@/api/auth";
 import { useRouter } from "next/navigation";
 import { useMiddleware } from "@/hooks/useMiddleware";

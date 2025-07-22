@@ -1,14 +1,23 @@
 export const loadingTips = [
-    "Optimiza tu postura para mejores resultados.",
-    "Intentá superarte con al menos 1 rep extra en cada set.",
-    "Hidrátate antes, durante y después del entrenamiento.",
-    "Respira correctamente durante cada ejercicio.",
-    "La constancia es clave para la hipertrofia.",
-    "Calienta siempre antes de empezar tu rutina.",
-    "Descansa bien para permitir la recuperación muscular.",
-    "Aliméntate con proteínas para maximizar el crecimiento.",
-    "Controla el peso para evitar lesiones.",
-    "Concéntrate en la técnica, no solo en el peso.",
-    "Progresá gradualmente para evitar sobreentrenamiento."
-  ];
-  
+  "Subir el peso no siempre es necesario. Ganás músculo también controlando mejor cada repetición.",
+  "Enfocate en la tensión: repeticiones lentas y controladas generan más hipertrofia que moverse rápido con peso excesivo.",
+  "No confundas progreso con más carga: mejorar la técnica ya es una forma de sobrecarga progresiva.",
+  "Hacer más repeticiones solo sirve si mantenés la calidad del movimiento. No sacrifiques control por cantidad.",
+  "Aunque uses el mismo peso por semanas, podés seguir progresando si ejecutás con más precisión y lentitud.",
+  "La sobrecarga progresiva incluye mejorar rango de movimiento, pausas, control y técnica. No es solo levantar más.",
+  "Si sos principiante, enfocate en aprender a sentir el músculo trabajando antes de buscar progresar por repeticiones.",
+  "Entrenar lento y con control puede ser más efectivo y seguro que subir de peso sin forma correcta.",
+  "La progresión por repeticiones puede estancarse si no controlás bien los movimientos. Primero técnica, después cantidad.",
+  "Podés ganar masa muscular incluso con la misma carga si aumentás la tensión mecánica interna en cada serie.",
+  "Sobreentrenar es fácil cuando solo pensás en más repeticiones o peso. Escuchá tu cuerpo y priorizá la calidad de trabajo.",
+  "Más peso no significa más músculo si no podés controlarlo con buena forma y recorrido completo.",
+  "El tempo es clave: una fase excéntrica lenta aumenta la tensión muscular sin necesidad de más peso.",
+  "La pausa al final de la repetición mejora el control y elimina el rebote, maximizando la hipertrofia.",
+  "Repeticiones con control = más estímulo = menos riesgo de lesión. Ese es el juego largo.",
+  "Sentir el músculo trabajar durante la serie es más importante que terminar más rápido.",
+  "Podés aplicar sobrecarga aumentando el tiempo bajo tensión, no solo con kilos extras.",
+  "Controlar el tempo te permite desafiar el músculo aunque uses el mismo peso por semanas.",
+  "No subestimes la técnica perfecta. Cada repetición limpia construye más músculo que 3 descontroladas.",
+  "Aprendé a entrenar cerca del fallo sin perder la forma. Ahí ocurre el verdadero estímulo.",
+  "Tu progreso no se mide en la balanza de discos, sino en la eficiencia del estímulo que generás."
+];

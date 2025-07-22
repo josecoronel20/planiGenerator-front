@@ -1,6 +1,6 @@
 "use client";
 
-import Nav from "./components/layout/Nav";
+import NavBar from "@/components/layout/Navbar";
 import { useWorkoutFormated } from "@/hooks/useWorkoutFormated";
 import { useMiddleware } from "@/hooks/useMiddleware";
 
@@ -15,7 +15,7 @@ export default function ProtectedLayout({
   
   return (
     <>
-      <Nav />
+      <NavBar />
       {children}
     </>
   );

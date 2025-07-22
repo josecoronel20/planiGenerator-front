@@ -18,7 +18,7 @@ import ExperienceInput from "./formRoutineComponents/ExperienceInput";
 import PriorityInput from "./formRoutineComponents/PriorityInput";
 import InjuriesInput from "./formRoutineComponents/InjuriesInput";
 import workoutGenerator from "@/api/workoutGenerator";
-import LoadingTips from "./formRoutineComponents/LoadingTips";
+import TipsComponent from "../../../components/TipsComponent";
 
 export default function FormRoutine() {
   const {
@@ -111,7 +111,7 @@ export default function FormRoutine() {
                 <Loader2 className="animate-spin text-[#e63946]" />
               </div>
 
-              <LoadingTips />
+              <TipsComponent />
             </div>
           )}
         </div>

@@ -5,6 +5,7 @@ import { WorkoutDay, Workout } from "@/types/workout"
 import DaySelector from "./homeComponents/workoutSection/DaySelector"
 import RoutineDetails from "./homeComponents/workoutSection/RoutineDetails"
 import { useUserStore } from "@/store/User"
+import RoutineDetailsSkeleton from "./homeComponents/workoutSection/RoutineDetailsSkeleton"
 
 export default function Home() {
   const [selectedDay, setSelectedDay] = useState(1)
@@ -18,14 +19,18 @@ export default function Home() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-2">Mi Rutina Semanal</h1>
-          <p className="text-gray-400">{user?.workout ? "Selecciona un día para ver tu entrenamiento" : "No hay planificación disponible"}</p>
+          <p className="text-gray-400">{user?.workout && user?.workout.length > 0 ? "Selecciona un día para ver tu entrenamiento" : "Cargando planificacion..."}</p>
         </div>
 
         {/* Day Selector */}
         <DaySelector userworkout={userworkout} selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
 
         {/* Routine Details */}
-        <RoutineDetails selectedDay={selectedDay} currentRoutine={currentRoutine} />
+        {user?.workout && user?.workout.length > 0 ? (
+          <RoutineDetails selectedDay={selectedDay} currentRoutine={currentRoutine} />
+        ) : (
+          <RoutineDetailsSkeleton />
+        )}
 
         {/* Navigation Hint */}
         {user?.workout && user?.workout.length > 0 && (

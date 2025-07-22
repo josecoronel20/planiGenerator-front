@@ -14,7 +14,6 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false)
   const path = usePathname()
-  console.log(path)
 
   const navigationLinks = [
     { name: "Inicio", href: "/" },
