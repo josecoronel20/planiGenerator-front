@@ -1,12 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { Menu, X, User, LogOut, Dumbbell } from "lucide-react"
+import { Menu, X, User, LogOut } from "lucide-react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 import { logout } from "@/api/auth"
 import { useRouter } from "next/navigation"
 import { useUserStore } from "@/store/User"
+import Logo from "./Logo"
 
 export default function Navbar() {
   const router = useRouter();
@@ -41,14 +42,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo/Brand */}
-          <div className="flex items-center">
-            <div className="flex-shrink-0 flex items-center">
-              <div className="w-8 h-8 bg-[#e63946] rounded-lg flex items-center justify-center mr-3">
-                <Dumbbell className="h-5 w-5 text-white" />
-              </div>
-              <span className="text-white text-xl font-bold">FitTracker</span>
-            </div>
-          </div>
+          <Logo />
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
