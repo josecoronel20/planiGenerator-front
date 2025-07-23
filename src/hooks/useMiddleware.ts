@@ -8,13 +8,17 @@ export const useMiddleware = () => {
   const currentPath = usePathname();
 
   useEffect(() => {
+    console.log(currentPath);
+
     if (!isLoading && data === null && currentPath !== "/login") {
       router.push("/login");
     }
-    if (!isLoading && data !== null && currentPath === "/login") {
+    if (
+      !isLoading &&
+      data !== null &&
+      (currentPath === "/login" || currentPath === "/register")
+    ) {
       router.push("/");
     }
-
-
   }, [isLoading, data, router, currentPath]);
 };

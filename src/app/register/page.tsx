@@ -5,8 +5,10 @@ import AuthForm from "../../components/authForm/AuthForm";
 import { register } from "@/api/auth";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useMiddleware } from "@/hooks/useMiddleware";
 
 export default function RegisterPage() {
+  useMiddleware();
   const router = useRouter();
   const [response, setResponse] = useState<{ message: string } | null>(null);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
