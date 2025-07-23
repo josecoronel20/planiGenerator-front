@@ -1,4 +1,4 @@
-import { FormData } from "@/types/formRoutineTypes";
+import { FormData } from "@/types/workoutGenFormTypes";
 import { UseFormRegister } from "react-hook-form";
 import React from "react";
 

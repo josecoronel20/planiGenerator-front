@@ -7,7 +7,7 @@
 - Detalles de ejercicios por día
 - Modal para editar ejercicios
 
-### **Formulario de Rutina (`/formRoutine`)**
+### **Formulario de Rutina (`/workoutGenForm`)**
 - Configuración personalizada de entrenamiento
 - Selección de días, split y experiencia
 - Validación de formularios con Zod

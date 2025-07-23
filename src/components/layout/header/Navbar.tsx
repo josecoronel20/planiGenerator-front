@@ -18,7 +18,7 @@ export default function Navbar() {
 
   const navigationLinks = [
     { name: "Inicio", href: "/" },
-    { name: "Generar rutina", href: "/formRoutine" },
+    { name: "Generar rutina", href: "/workoutGenForm" },
     { name: "Guía", href: "/guide" },
   ]
 

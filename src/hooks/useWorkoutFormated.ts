@@ -18,6 +18,7 @@ export const useWorkoutFormated = () => {
   const { data, isLoading } = useFetchUser();
 
   useEffect(() => {
+console.log(data  )
 
     if (data && !isLoading) {
       const workoutFormated = data.workout.map((day: WorkoutNoFormated) =>

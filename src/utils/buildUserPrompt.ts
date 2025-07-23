@@ -1,4 +1,4 @@
-import { FormData } from "@/types/formRoutineTypes";
+import { FormData } from "@/types/workoutGenFormTypes";
 
 export const buildUserPrompt = (data: FormData) => {
   const { trainingDays, split, experience, priority, injuries } = data;

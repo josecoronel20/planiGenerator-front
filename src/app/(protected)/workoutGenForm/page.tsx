@@ -1,22 +1,22 @@
 "use client";
 
 import { Dumbbell, Loader2 } from "lucide-react";
-import { FormData } from "@/types/formRoutineTypes";
+import { FormData } from "@/types/workoutGenFormTypes";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { formSchema } from "@/zodSchemas/formRoutineSchema";
+import { formSchema } from "@/zodSchemas/workoutGenFormSchema";
 import { buildUserPrompt } from "@/utils/buildUserPrompt";
 import { useState } from "react";
-import ModalRoutine from "./formRoutineComponents/ModalRoutine";
+import ModalRoutine from "./workoutGenFormComponents/ModalRoutine";
 import { useUserStore } from "@/store/User";
 import { User } from "@/types/user";
 import { useRouter } from "next/navigation";
-import Header from "./formRoutineComponents/Header";
-import TrainingDaysInput from "./formRoutineComponents/TrainingDaysInput";
-import SplitInput from "./formRoutineComponents/SplitInput";
-import ExperienceInput from "./formRoutineComponents/ExperienceInput";
-import PriorityInput from "./formRoutineComponents/PriorityInput";
-import InjuriesInput from "./formRoutineComponents/InjuriesInput";
+import Header from "./workoutGenFormComponents/Header";
+import TrainingDaysInput from "./workoutGenFormComponents/TrainingDaysInput";
+import SplitInput from "./workoutGenFormComponents/SplitInput";
+import ExperienceInput from "./workoutGenFormComponents/ExperienceInput";
+import PriorityInput from "./workoutGenFormComponents/PriorityInput";
+import InjuriesInput from "./workoutGenFormComponents/InjuriesInput";
 import workoutGenerator from "@/api/workoutGenerator";
 import TipsComponent from "../../../components/TipsComponent";
 

@@ -16,7 +16,7 @@ const Header = ({setIsRoutineOpen}:{setIsRoutineOpen: (isOpen: boolean) => void}
               Configuración de Rutina
             </h1>
             <p className="text-gray-400">
-              Completa tus datos para crear una rutina personalizada
+              Completa tus datos para crear una rutina personalizada con <span className="text-[#e63946]">I.A</span>
             </p>
             {user.workout && user.workout.length > 0 && (
               <button

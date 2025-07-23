@@ -48,7 +48,7 @@ const RoutineDetails = ({
               Aun no tienes una rutina, genera una para empezar a entrenar
             </p>
             <Link
-              href="/formRoutine"
+              href="/workoutGenForm"
               className="bg-[#e63946] text-white px-4 py-2 rounded-md hover:bg-[#e63946]/80 transition-all duration-300 hover:scale-105"
             >
               Genera tu rutina
